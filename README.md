@@ -14,6 +14,8 @@ https://www.postgresqltutorial.com/install-postgresql-linux/ (linux)
 
 `cd rayha-graphql-server`
 
+`npm install`
+
 `touch .env `
 
 ## .env file
@@ -26,3 +28,7 @@ DATABASE=mydatabase
 DATABASE_USER=myuser
 DATABASE_PASSWORD=mypassword
 ```
+
+Start the server in a development environment easily with
+
+`npm run dev`
