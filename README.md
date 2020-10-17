@@ -32,3 +32,34 @@ DATABASE_PASSWORD=mypassword
 Start the server in a development environment easily with
 
 `npm run dev`
+
+# Example queries (playground mode)
+
+```
+# get all raiders
+query all {
+  raiders {
+    name
+    class
+    spec
+  }
+}
+
+# insert a raider
+mutation add {
+  addRaider(name: "Räystö", class: "Druid", spec: "Restoration") {
+    name
+    class
+    spec
+  }
+}
+
+# get a raider by name
+query one {
+  raider(name: "Nekuin") {
+    name
+    class
+    spec
+  }
+}
+```
