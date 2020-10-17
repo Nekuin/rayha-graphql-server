@@ -12,7 +12,7 @@ https://www.postgresqltutorial.com/install-postgresql-linux/ (linux)
 
 `git clone https://github.com/Nekuin/rayha-graphql-server.git`
 
-`cd graphql-server`
+`cd rayha-graphql-server`
 
 `touch .env `
 
