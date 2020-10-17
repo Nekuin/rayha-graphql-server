@@ -61,15 +61,6 @@ sequelize.sync({ force: true }).then(async () => {
     });
 });
 
-const createRaider = async () => {
-    const raider = await models.Raider.create({
-        name: "Nekuin",
-        class: "Paladin",
-        spec: "Holy",
-    });
-    console.log("Raider created", raider.toJSON());
-};
-
 const findRaiders = async () => {
     return await models.Raider.findAll();
 };
