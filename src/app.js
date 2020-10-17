@@ -8,6 +8,7 @@ import cors from "cors";
 import schema from "./schema";
 import resolvers from "./resolvers/index.js";
 import models, { sequelize } from "./model/index.js";
+import seedDatabase from "./seeders";
 
 const app = express();
 
@@ -42,8 +43,9 @@ const port = process.env.PORT;
 
 // force: true = wipe DB on start
 sequelize.sync({ force: true }).then(async () => {
-    // create a raider
-    await createRaider();
+    // insert test data and necessary database seeders
+    console.log("Insertin seed data...");
+    await seedDatabase();
     // query all raiders
     let r = await findRaiders();
     console.log("All raiders");
@@ -58,15 +60,6 @@ sequelize.sync({ force: true }).then(async () => {
         console.log("Apollo server on http://localhost:" + port);
     });
 });
-
-const createRaider = async () => {
-    const raider = await models.Raider.create({
-        name: "Nekuin",
-        class: "Paladin",
-        spec: "Holy",
-    });
-    console.log("Raider created", raider.toJSON());
-};
 
 const findRaiders = async () => {
     return await models.Raider.findAll();
