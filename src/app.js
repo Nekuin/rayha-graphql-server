@@ -34,7 +34,7 @@ const server = new ApolloServer({
     },
 });
 
-server.applyMiddleware({ app, path: "/graphql" });
+server.applyMiddleware({ app, path: "/" });
 
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
@@ -57,7 +57,7 @@ sequelize.sync({ force: true }).then(async () => {
     console.log("one", one.dataValues);
 
     httpServer.listen({ port }, () => {
-        console.log("Apollo server on http://localhost:" + port + "/graphql");
+        console.log("Apollo server on http://localhost:" + port);
     });
 });
 
