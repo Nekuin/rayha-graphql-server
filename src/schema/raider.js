@@ -10,6 +10,10 @@ export default gql`
         addRaider(name: String, class: String, spec: String): Raider
     }
 
+    extend type Subscription {
+        raiderAdded: Raider
+    }
+
     type Raider {
         name: String
         class: String

@@ -1,4 +1,5 @@
 import Sequelize from "sequelize";
+import pubsub from "../subscription";
 
 export default {
     Query: {
@@ -9,6 +10,12 @@ export default {
             return await models.Raider.findOne({
                 where: { name: name },
             });
+        },
+    },
+
+    Subscription: {
+        raiderAdded: {
+            subscribe: () => pubsub.asyncIterator(EVENTS.RAIDER.CREATED),
         },
     },
 
