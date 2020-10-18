@@ -58,6 +58,9 @@ sequelize.sync({ force: true }).then(async () => {
 
     httpServer.listen({ port }, () => {
         console.log("Apollo server on http://localhost:" + port);
+        console.log(
+            "Subscriptions at ws://localhost" + port + server.subscriptionsPath
+        );
     });
 });
 
