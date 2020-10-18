@@ -9,6 +9,12 @@ import schema from "./schema";
 import resolvers from "./resolvers/index.js";
 import models, { sequelize } from "./model/index.js";
 import seedDatabase from "./seeders";
+import { createRateLimitDirective } from "graphql-rate-limit";
+
+// rate limit identify by IP
+const rateLimitDirective = createRateLimitDirective({
+    identifyContext: (ctx) => ctx.ip,
+});
 
 const app = express();
 
@@ -20,6 +26,9 @@ const server = new ApolloServer({
     playground: true,
     typeDefs: schema,
     resolvers: resolvers,
+    schemaDirectives: {
+        rateLimit: rateLimitDirective,
+    },
     formatError: (error) => {
         // remove the internal sequelize error message
         // leave only the important validation error
