@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import pubsub from "../subscription";
+import pubsub, { EVENTS } from "../subscription";
 
 export default {
     Query: {
@@ -15,7 +15,7 @@ export default {
 
     Subscription: {
         raiderAdded: {
-            subscribe: () => pubsub.asyncIterator(EVENTS.RAIDER.CREATED),
+            subscribe: () => pubsub.asyncIterator([EVENTS.RAIDER.CREATED]),
         },
     },
 
@@ -25,6 +25,10 @@ export default {
                 name: args.name,
                 class: args.class,
                 spec: args.spec,
+            });
+            // publish to subscribers
+            pubsub.publish(EVENTS.RAIDER.CREATED, {
+                raiderAdded: { raider },
             });
             return raider;
         },
