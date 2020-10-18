@@ -28,7 +28,7 @@ export default {
             });
             // publish to subscribers
             pubsub.publish(EVENTS.RAIDER.CREATED, {
-                raiderAdded: { raider },
+                raiderAdded: raider.toJSON(),
             });
             return raider;
         },
